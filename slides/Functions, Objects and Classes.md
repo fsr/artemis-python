@@ -1,0 +1,222 @@
+# Functions, Objects and Classes
+
+---
+
+## Programming paradigms
+
+ - styles of writing programs
+
+ - different strengths and weaknesses
+
+ - Python is an imperative and object oriented language
+
+---
+
+### Imperative programming
+
+ - a program is a sequence of commands
+
+ - each command modifies the state of the interpreter
+
+ - the program describes how to reach a certain result
+
+---
+
+### Object oriented programming
+
+ - everything is an object
+
+ - objects encapsulate state and provide operations on it (methods)
+
+ - objects are created from "templates" called classes
+   (accessible via [`type(variable)`](https://docs.python.org/3/library/functions.html#type))
+
+---
+
+## Functions
+
+ - allow to execute a program multiple times
+
+ - can be called with multiple arguments which are visible as variables
+
+ - can return a sigle value to its caller
+
+ - no state is retained after the function returns to its caller
+
+```python
+    def mean(a, b):
+        m = (a + b) / 2
+        return m
+
+    # a = 1, b = 2, prints 1.5
+    print(mean(1, 2))
+
+    # a = 2, b = 2, prints 2.0
+    print(mean(2, 2))
+```
+
+---
+
+### Scope
+
+ - part of the program in which a certain variable is visible
+
+ - function and class definitions are a scope
+
+ - inner scopes optain read only access to variables in their enclosing scope
+
+ - variable assignment can replace variables from the enclosing scope with
+   variables from the current scope having the same name (shadowing)
+
+```python
+    # global scope, visible to the whole script
+    var = 12
+
+    # the variables a and m are only visible to the code in mean_with_var
+    def mean_with_var(a):
+        m = (a + var) / 2
+        return m
+
+    # global scope, visible to the whole script
+    m = 6
+
+    # prints 9.0
+    print(mean_with_var(m))
+
+    # prints 6, the variable m was shadowed in mean_with_var
+    print(m)
+```
+
+---
+
+## Classes
+
+ - contain functions which will be methods of their objects (instances)
+
+ - can contain variables (attributes)
+
+ - create objects by being called
+
+---
+
+### Objects
+
+ - optain methods and attributes from their classes
+
+ - can contain attributes not defined in their classes
+
+ - behave like a inner scope of their class definition
+
+---
+
+### Methods
+
+ - are ordinary functions stored as attributes
+
+ - are passed the instance they are called on autmatically as the first argument
+
+ - since attributes and methods are in the scope of the instance
+   they have to be accessed by writing `instance.attribute` or `instance.method`
+
+---
+
+```python
+    class TestClass:
+        # attribute on every instance
+        number = 42
+
+        # the first parameter is the object this method is called on
+        def calculate(self, a):
+            # attribute access by writing object.attribute
+            return self.number + a
+
+    # create two different objects from the same class
+    x = TestClass()
+    y = TestClass()
+
+    # prints 43
+    print(x.calculate(1))
+
+    x.number -= 1
+
+    # prints 41
+    print(x.number)
+
+    # prints 42, attributes are not shared between instances
+    # since the class attribute is being shadowed by an object attribute
+    print(y.number)
+```
+
+### Special Methods
+
+ - some methods have special meaning to the interpreter
+
+ - they have two underscores as prefix and suffix
+
+ - can be used for customising operators like `+` and `==`
+
+```python
+    class Example:
+        # is called when the instance is created with
+        # the arguments passed to the class, used for
+        # initialising the object and its attributes
+        def __init__(self, a, b):
+            self.a = a
+            self.b = b
+
+        # used when the object has to be converted into a string
+        def __str__(self):
+            return "Iam a string!"
+
+        # used when the object has to be presented, like for debugging
+        def __repr__(self):
+            return "Iam a representation!"
+    
+    x = Example(1, 2)
+
+    # prints 1
+    print(x.a)
+
+    # prints "Iam a string!"
+    print(x)
+
+    # should display "Iam a representation!" when
+    # used in the interactive console
+    x
+```
+
+---
+
+### Inheritance
+
+ - establishes a "is a" relation between the instances of two classes
+
+ - the subclass inherits the methods and attributes of the superclass
+
+ - access to shadowed attributes and methods of the superclass
+   by calling [`super()`](https://docs.python.org/3/library/functions.html#super)
+
+```python
+    class Human:
+        def __init__(self, firstname, lastname):
+            self.firstname = firstname
+            self.lastname = lastname
+    
+        def __repr__(self):
+            return self.say_name()
+
+        def __str__(self):
+            return self.say_name()
+    
+        def say_name(self):
+            return f"{self.firstname} {self.lastname}"
+    
+    class Child(Human):
+        def __init__(self, firstname, lastname, father, mother):
+            super().__init__(firstname, lastname)
+            self.father = father
+            self.mother = mother
+    
+        def __repr__(self):
+            return f"{self}, child of {self.father} and {self.mother}"
+```
