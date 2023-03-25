@@ -107,6 +107,8 @@
 
  - behave like a inner scope of their class definition
 
+ - can be compared by identity with the `is` operator
+
 ---
 
 ### Methods
