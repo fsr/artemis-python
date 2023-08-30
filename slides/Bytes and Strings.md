@@ -33,12 +33,17 @@
 
 ---
 
-### Concatenation
+### Operators
 
- - strings can be concatenated by adding them using `+`
+ - strings can be concatenated by adding them using `+` (using `*` with a string and an integer works too)
 
  - doing so with [`str.join(strings)`](https://docs.python.org/3/library/stdtypes.html#str.join)
    is more efficient when concatenating many strings
+
+ - `==` checks whether two strings are equal (`!=` checks the opposite)
+
+ - do not use the `is` operator to perform value comparisions!
+
 
 ```python
     # both are equal to "Hello World!"
