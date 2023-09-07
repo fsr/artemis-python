@@ -73,9 +73,28 @@ print("Wont be executed")
 try:
     raise Exception("something went wrong!")
     print("Wont be executed")
-except Exception:
-    print("An error occured!")
+except Exception as error:
+    print(f"An error occured: {error}")
 print("Will be executed")
+```
+
+---
+
+#### Prevent exceptions from being handled accidentally
+
+ - `except` handles all exceptions being raised in the `try` statement
+
+ - some exceptions can be raised by multiple functions, which should not be in the `try` statement
+
+ - `else` executes only when no exceptions where raised
+
+```py
+try:
+	value = parse_value(string)
+except Exception:
+	print("Parsing failed")
+else:
+	process(value)
 ```
 
 ---
