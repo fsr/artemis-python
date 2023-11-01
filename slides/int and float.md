@@ -1,5 +1,7 @@
 # int and float
 
+![Number sets](img/numbers.png "https://commons.wikimedia.org/wiki/File:NumberSetinC.svg"){ height=75% }
+
 ---
 
 ## The numeric tower
@@ -18,7 +20,7 @@
 
  - can contain arbitrary large numbers unlike most other languages
 
- - can be created by calling [`int(value)'](https://docs.python.org/3/library/functions.html#int)
+ - can be created by calling [`int(value)`](https://docs.python.org/3/library/functions.html#int)
    or using literals like `42` or `-9`
 
 ---
@@ -29,7 +31,7 @@
 
  - have limited accuracy making them not suitable for things like money (`0.1 + 0.1 + 0.1 != 0.3`)
 
- - can be created by calling [`float(value)](https://docs.python.org/3/library/functions.html#float)
+ - can be created by calling [`float(value)`](https://docs.python.org/3/library/functions.html#float)
    or using literals like `42.6` or `426e-1`
 
 ---
