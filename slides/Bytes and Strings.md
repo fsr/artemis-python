@@ -1,5 +1,7 @@
 # Bytes and Strings
 
+![Unicode Logo](img/unicode.png "https://commons.wikimedia.org/wiki/File:New_Unicode_logo.svg"){ height=75% }
+
 ---
 
 ## Strings
@@ -12,7 +14,7 @@
 
  - can be created by enclosing text in `'single'` or `"double"` quotes (literals)
 
- - the length can be determined by `len(string)`
+ - the length can be determined by [`len(string)`](https://docs.python.org/3/library/functions.html#len)
 
 ---
 
@@ -24,23 +26,27 @@
 
  - always start with a backslash and can be disabled by writing `r"string"`
 
-| Escape sequence   | Result                           |
-|-------------------|----------------------------------|
-| \n                | ASCII Linefeed                   |
-| \t                | ASCII Horizontal Tab             |
-| \\\\              | \\                               |
-| \\"               | " (works with single quotes too) |
+| Escape sequence     | Result                           |
+|---------------------|----------------------------------|
+| \\n                 | ASCII Linefeed                   |
+| \\t                 | ASCII Horizontal Tab             |
+| \\\\\\\\            | \\\\                             |
+| \\"                 | " (works with single quotes too) |
 
 ---
 
 ### Operators
 
- - strings can be concatenated by adding them using `+` (using `*` with a string and an integer works too)
+ - strings can be concatenated by adding them using `+`
 
  - doing so with [`str.join(strings)`](https://docs.python.org/3/library/stdtypes.html#str.join)
    is more efficient when concatenating many strings
 
- - `==` checks whether two strings are equal (`!=` checks the opposite)
+ - using `*` with a string and an integer repeats the string
+
+ - `==` checks whether two strings are equal 
+
+   (`!=` checks the opposite)
 
  - do not use the `is` operator to perform value comparisions!
 
@@ -60,12 +66,6 @@
 
  - writing `:` without specifying a value defaults to the start and end of the string
 
- - [`str.partition(seperator)`](https://docs.python.org/3/library/stdtypes.html#str.partition)
-   splits the string into the part before the first seperator, the seperator and the part after the seperator
-
- - [`str.split(seperator)`](https://docs.python.org/3/library/stdtypes.html#str.split)
-   splits the string into a list of substrings at the seperator (opposite to `str.join`)
-
 ```python
     # retuns "Hello"
     "Hello World!"[0:5]
@@ -73,9 +73,22 @@
 
     # returns " "
     "Hello World!"[5]
+```
 
+---
+
+### Splitting
+
+ - [`str.partition(seperator)`](https://docs.python.org/3/library/stdtypes.html#str.partition)
+   splits the string into the part before the first seperator, the seperator and the part after the seperator
+
+ - [`str.split(seperator)`](https://docs.python.org/3/library/stdtypes.html#str.split)
+   splits the string into a list of substrings at the seperator (opposite to `str.join`)
+  
+```python
     # returns ("Hello", " ", "World!")
-    before, seperator, after = "Hello World!".partition(" ")
+    before, seperator, after = \
+      "Hello World!".partition(" ")
 
     # returns ("Hello World!", "", "")
     "Hello World!".partition("not found")
@@ -83,7 +96,6 @@
     # returns ["Hell", " W", "rld!"]
     "Hello World!".split("o")
 ```
-
 ---
 
 ### Formatting
@@ -114,3 +126,10 @@
  - literals are prefixed with `b`
 
  - can be transformed into strings using [`bytes.decode(encoding)`](https://docs.python.org/3/library/stdtypes.html#bytes.decode)
+
+ - can be created from strings using [`str.encode(encoding)`](https://docs.python.org/3/library/stdtypes.html#str.encode)
+
+```python
+b"Hello W\xc3\xb6rld!".decode("utf8") == "Hello Wörld!"
+b"Hello W\xc3\xb6rld!" == "Hello Wörld!".encode("utf8")
+```
