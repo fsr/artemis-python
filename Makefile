@@ -1,0 +1,13 @@
+slides :=	slides/Bytes\ and\ Strings.pdf \
+			slides/Exceptions\ and\ Context\ managers.pdf \
+			slides/Functions,\ Objects\ and\ Classes.pdf \
+			slides/int\ and\ float.pdf \
+			slides/The\ Language.pdf
+
+all: $(slides)
+
+clean:
+	rm $(slides)
+
+%.pdf: %.md
+	pandoc -t beamer "$<" -o "$@"
