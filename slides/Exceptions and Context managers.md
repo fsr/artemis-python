@@ -1,5 +1,7 @@
 # Exceptions and Context managers
 
+![Oh no!](img/error.png "https://commons.wikimedia.org/wiki/File:Generic_error_message.png"){ height=75% }
+
 ---
 
 ## Error handling
