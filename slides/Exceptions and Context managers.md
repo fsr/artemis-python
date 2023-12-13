@@ -151,7 +151,7 @@ except ValueError:
 
  - `__exit__` receives the exception class, its instance and traceback (information where it was raised) which may be `None`
 
-   - is always executed when exiting the `with` stement like `finally`
+   - is always executed when exiting the `with` statement
 
    - can handle the exception by returning `True`
 
@@ -166,5 +166,5 @@ class Example:
         print("We exit the statement")
 
 with Example() as example:
-    print("We are inside the stement")
+    print("We are inside the statement")
 ```
