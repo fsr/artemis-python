@@ -67,7 +67,7 @@
  - writing `:` without specifying a value defaults to the start and end of the string
 
 ```python
-    # retuns "Hello"
+    # returns "Hello"
     "Hello World!"[0:5]
     "Hello World!"[:5]
 
