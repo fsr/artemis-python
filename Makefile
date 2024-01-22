@@ -5,7 +5,8 @@ slides :=	slides/Bytes\ and\ Strings.pdf \
 			slides/The\ Language.pdf \
 			slides/Modules\ and\ Packages.pdf \
 			slides/Collections\ and\ Iterators.pdf \
-			slides/Decorators\ and\ advanced\ Functions.pdf
+			slides/Decorators\ and\ advanced\ Functions.pdf \
+			slides/Comprehensions.pdf
 
 all: $(slides)
 
