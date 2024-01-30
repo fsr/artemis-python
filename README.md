@@ -11,3 +11,5 @@ To build the slides with pandoc execute:
 ```sh
 make all
 ```
+
+The resulting PDF files are located in the `output` directory.

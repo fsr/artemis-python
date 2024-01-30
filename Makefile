@@ -1,17 +1,26 @@
-slides :=	slides/Bytes\ and\ Strings.pdf \
-			slides/Exceptions\ and\ Context\ managers.pdf \
-			slides/Functions,\ Objects\ and\ Classes.pdf \
-			slides/int\ and\ float.pdf \
-			slides/The\ Language.pdf \
-			slides/Modules\ and\ Packages.pdf \
-			slides/Collections\ and\ Iterators.pdf \
-			slides/Decorators\ and\ advanced\ Functions.pdf \
-			slides/Comprehensions.pdf
+SLIDES :=	output/Bytes\ and\ Strings.pdf \
+			output/Exceptions\ and\ Context\ managers.pdf \
+			output/Functions,\ Objects\ and\ Classes.pdf \
+			output/int\ and\ float.pdf \
+			output/The\ Language.pdf \
+			output/Modules\ and\ Packages.pdf \
+			output/Collections\ and\ Iterators.pdf \
+			output/Decorators\ and\ advanced\ Functions.pdf \
+			output/Comprehensions.pdf
 
-all: $(slides)
+PANDOC_COMMAND := pandoc
+
+PANDOC_OPTIONS := -t beamer
+
+.PHONY: clean all
+
+all: $(SLIDES)
 
 clean:
-	rm $(slides)
+	rm -rf output
 
-%.pdf: %.md
-	pandoc -t beamer "$<" -o "$@"
+output:
+	mkdir output
+
+output/%.pdf: slides/%.md img $(wildcard img/*) | output
+	$(PANDOC_COMMAND) $(PANDOC_OPTIONS) -o "$@" "$<"
